@@ -1,11 +1,5 @@
-#Halve array if its length > 1
-  #If length is odd, halve so first half is shorter.
-  #You can directly assign the halves to run the recursive function.
-#Base case: Array length is 1. 
-#The split arrays are passed to the recursive function in order to be split. They are returned, then evaluated.
-
 def merge_sort(array)
-  return array if array.length <= 1 #Is this a sufficient base case? I might need another.
+  return array if array.length <= 1
 
   middle_index = array.length / 2 #for simpler splitting syntax
 
@@ -15,12 +9,12 @@ def merge_sort(array)
   sorted_array = []
   until left.empty? && right.empty? do
     if left.empty?
-      sorted_array.push(right)
+      sorted_array.concat(right)
       right.clear
     elsif right.empty?
-      sorted_array.push(left)
+      sorted_array.concat(left)
       left.clear
-    elsif left.first > right.first
+    elsif left.first < right.first
       sorted_array.push(left.first)
       left.shift
     else
@@ -32,17 +26,8 @@ def merge_sort(array)
   return sorted_array
 end
 
-#Must test whether this method actually splits stuff well.
+array = []
 
-def split(array)
-  middle_index = array.length / 2
-  p array
-  puts "Left:"
-  p array[0...middle_index]
-  puts "Right:"
-  p array[middle_index..-1]
-end
+p merge_sort(array)
 
-array = [1, 2, 3, 4, 5, 6]
-
-split(array)
+#Big issue: How to push individual array elements into sorted_array?
