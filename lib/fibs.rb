@@ -16,4 +16,17 @@ def fibs(n)
   end
 end
 
-p fibs(20)
+def fibo(num)
+  return num if num <= 1
+  fibo(num - 1) + fibo(num - 2)
+end
+
+def fibs_rec(n)
+  final = []
+  n.times do | num |
+    final.push(fibo(num))
+  end
+  final
+end
+
+p fibs_rec(8)
