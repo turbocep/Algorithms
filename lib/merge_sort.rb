@@ -14,3 +14,17 @@ def merge_sort(array)
 
 end
 
+#Must test whether this method actually splits stuff well.
+
+def split(array)
+  middle_index = array.length / 2
+  p array
+  puts "Left:"
+  p array[0...middle_index]
+  puts "Right:"
+  p array[middle_index..-1]
+end
+
+array = [1, 2, 3, 4, 5, 6]
+
+split(array)
