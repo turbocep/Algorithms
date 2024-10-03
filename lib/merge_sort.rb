@@ -26,8 +26,13 @@ def merge_sort(array)
   return sorted_array
 end
 
+#Test:
 array = []
+
+1000.times { array.push(rand(100))}
+
+p array
 
 p merge_sort(array)
 
-#Big issue: How to push individual array elements into sorted_array?
+
