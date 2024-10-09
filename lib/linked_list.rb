@@ -21,6 +21,27 @@ class LinkedList
     self.head = Node.new(value, previous)
   end
 
+  def size
+    current = head
+    count = 0
+    loop do
+      if current == nil
+        return count
+      else
+        current = current.next_node
+        count += 1
+      end
+    end
+  end
+
+  def tail
+    current = head
+    loop do
+      return current if current.next_node == nil
+      current = current.next_node
+    end
+  end
+
   def to_s
     current = head
     final = ''
@@ -37,16 +58,8 @@ class LinkedList
 end
 
 list = LinkedList.new
-
 list.append(6)
-
-puts list
-
 list.append(5)
-
-puts list
-
 list.prepend(1)
 
-puts list
-p list
+p list.tail.value
