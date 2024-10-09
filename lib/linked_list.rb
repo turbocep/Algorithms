@@ -56,6 +56,26 @@ class LinkedList
     self.at(self.size - 2).next_node = nil
   end
 
+  def contains?(value)
+    current = head
+    loop do
+      return true if current.value == value
+      return false if current.next_node == nil
+      current = current.next_node
+    end
+  end
+
+  def find(value)
+    current = head
+    count = 0
+    loop do
+      return count if current.value == value
+      return nil if current.next_node == nil
+      current = current.next_node
+      count += 1
+    end
+  end
+
   def to_s
     current = head
     final = ''
@@ -76,8 +96,4 @@ list.append(6)
 list.append(5)
 list.prepend(1)
 
-puts list
-
-list.pop
-
-puts list
+p list.find(7)
