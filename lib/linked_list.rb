@@ -42,6 +42,20 @@ class LinkedList
     end
   end
 
+  def at(index)
+    current = head
+    count = 0
+    loop do
+      return current if count == index
+      current = current.next_node
+      count += 1
+    end
+  end
+
+  def pop
+    self.at(self.size - 2).next_node = nil
+  end
+
   def to_s
     current = head
     final = ''
@@ -62,4 +76,8 @@ list.append(6)
 list.append(5)
 list.prepend(1)
 
-p list.tail.value
+puts list
+
+list.pop
+
+puts list
