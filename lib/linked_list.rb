@@ -1,6 +1,8 @@
-require_relative('./node.rb')
+# frozen_string_literal: true
 
-#Linked List class
+require_relative('./node')
+
+# Linked List class
 class LinkedList
   attr_accessor :head
 
@@ -10,10 +12,11 @@ class LinkedList
 
   def append(value)
     current = head
-    return self.head = Node.new(value) if head == nil
-    if current.next_node == nil
-      current.next_node = Node.new(value)
-    end
+    return self.head = Node.new(value) if head.nil?
+
+    return unless current.next_node.nil?
+
+    current.next_node = Node.new(value)
   end
 
   def prepend(value)
@@ -25,19 +28,18 @@ class LinkedList
     current = head
     count = 0
     loop do
-      if current == nil
-        return count
-      else
-        current = current.next_node
-        count += 1
-      end
+      return count if current.nil?
+
+      current = current.next_node
+      count += 1
     end
   end
 
   def tail
     current = head
     loop do
-      return current if current.next_node == nil
+      return current if current.next_node.nil?
+
       current = current.next_node
     end
   end
@@ -47,20 +49,22 @@ class LinkedList
     count = 0
     loop do
       return current if count == index
+
       current = current.next_node
       count += 1
     end
   end
 
   def pop
-    self.at(self.size - 2).next_node = nil
+    at(size - 2).next_node = nil
   end
 
   def contains?(value)
     current = head
     loop do
       return true if current.value == value
-      return false if current.next_node == nil
+      return false if current.next_node.nil?
+
       current = current.next_node
     end
   end
@@ -70,7 +74,8 @@ class LinkedList
     count = 0
     loop do
       return count if current.value == value
-      return nil if current.next_node == nil
+      return nil if current.next_node.nil?
+
       current = current.next_node
       count += 1
     end
@@ -80,11 +85,10 @@ class LinkedList
     current = head
     final = ''
     loop do
-      if current == nil
-        return final << 'nil'
-      else
-        final << "( #{current.value} ) -> "
-      end
+      return final << 'nil' if current.nil?
+
+      final << "( #{current.value} ) -> "
+
       current = current.next_node
     end
   end
@@ -93,9 +97,8 @@ class LinkedList
     current = head
     count = 0
     loop do
-      if count == index - 1
-        return current.next_node = Node.new(value, current.next_node)
-      end
+      return current.next_node = Node.new(value, current.next_node) if count == index - 1
+
       current = current.next_node
       count += 1
     end
@@ -103,17 +106,16 @@ class LinkedList
 
   def remove_at(index)
     current = head
-    return self.head = current.next_node if index == 0
+    return self.head = current.next_node if index.zero?
+
     count = 0
     loop do
-      if count == index - 1
-        return current.next_node = current.next_node.next_node
-      end
+      return current.next_node = current.next_node.next_node if count == index - 1
+
       current = current.next_node
       count += 1
     end
   end
-
 end
 
 list = LinkedList.new
@@ -126,7 +128,3 @@ puts list
 list.remove_at(0)
 
 puts list
-
-
-
-

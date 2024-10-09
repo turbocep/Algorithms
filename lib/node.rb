@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class Node
 class Node
   attr_accessor :value, :next_node
 
@@ -6,4 +9,3 @@ class Node
     self.next_node = next_node
   end
 end
-
