@@ -89,11 +89,44 @@ class LinkedList
     end
   end
 
+  def insert_at(value, index)
+    current = head
+    count = 0
+    loop do
+      if count == index - 1
+        return current.next_node = Node.new(value, current.next_node)
+      end
+      current = current.next_node
+      count += 1
+    end
+  end
+
+  def remove_at(index)
+    current = head
+    return self.head = current.next_node if index == 0
+    count = 0
+    loop do
+      if count == index - 1
+        return current.next_node = current.next_node.next_node
+      end
+      current = current.next_node
+      count += 1
+    end
+  end
+
 end
 
 list = LinkedList.new
-list.append(6)
-list.append(5)
+list.append(2)
+list.append(4)
 list.prepend(1)
 
-p list.find(7)
+puts list
+
+list.remove_at(0)
+
+puts list
+
+
+
+
